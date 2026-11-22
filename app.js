@@ -113,7 +113,7 @@ Router.on('/challenge', root => {
   function end(reason) {
     if (!running) return;
     running = false;
-    vibrate([200, 100, 200]);
+    vibrate([200, 100, 200]); Sfx.play('bad');
     lastResult = { sec: elapsed, reason, demo, radius: R, at: Date.now() };
     store.sset('ss-last', lastResult);
     if (!demo && elapsed >= 5) {
@@ -162,7 +162,7 @@ Router.on('/challenge', root => {
     if (running && anchor && !paused) elapsed += dt * speed;
     $('#time').textContent = fmt(elapsed);
     const r = rankOf(elapsed), n = nextRank(elapsed);
-    if ($('#rname').textContent !== r.name) { $('#rname').textContent = r.name; $('#ricon').textContent = r.icon; if (elapsed > 1) { vibrate(80); toast(`칭호 획득: ${r.name}`); } }
+    if ($('#rname').textContent !== r.name) { $('#rname').textContent = r.name; $('#ricon').textContent = r.icon; if (elapsed > 1) { vibrate(80); Sfx.play('win'); toast(`칭호 획득: ${r.name}`); } }
     $('#nextr').textContent = n ? `${n.name}까지 ${fmtKo(n.t - elapsed)}` : '최고 칭호 달성!';
     raf = requestAnimationFrame(tick);
   }
