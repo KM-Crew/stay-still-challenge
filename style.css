@@ -29,3 +29,11 @@
 .hist { padding-left: 22px; margin: 0; }
 .hist li { display: grid; grid-template-columns: 1fr auto auto; gap: 10px; padding: 6px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
 .hist em { font-style: normal; color: var(--muted); }
+
+/* ---------- PC 화면 ---------- */
+.pc .hero { text-align: left; }
+.pc .stone { font-size: 110px; }
+.pc body[data-page=ready] main, .pc body[data-page=result] main, .pc body[data-page=records] main { max-width: 720px; }
+.pc .timer { font-size: 120px; }
+.pc .radar { max-width: 380px; }
+.pc .ch { max-width: 980px; margin: 0 auto; }

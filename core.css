@@ -96,6 +96,40 @@ input[type=range] { width: 100%; accent-color: var(--accent); }
 }
 #toast.show { opacity: 1; transform: translate(-50%, 0); }
 
+/* 화면 모드 버튼 */
+.viewtoggle { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; background: var(--card); flex: none; }
+.viewtoggle button { border: none; background: none; padding: 5px 10px; font-size: 13px; cursor: pointer; color: var(--muted); line-height: 1.2; }
+.pc .viewtoggle [data-view=pc], .mobile .viewtoggle [data-view=mobile] { background: var(--accent); color: var(--accent-fg); }
+.viewtoggle .lbl { display: none; }
+.pc .viewtoggle .lbl { display: inline; }
+.foot .autoview { display: block; margin: 0 auto 6px; border: none; background: none; color: var(--muted); text-decoration: underline; cursor: pointer; font-size: 12px; }
+.embedded .viewtoggle, .embedded .autoview { display: none !important; }
+
+/* 공용 2단 배치: 모바일에서는 위아래, PC에서는 좌우 */
+.split > * + * { margin-top: 16px; }
+
+/* ---------- PC 화면 ---------- */
+.pc body { font-size: 16.5px; }
+.pc .top { padding: 14px 32px; }
+.pc main { max-width: 1120px; padding: 36px 32px 72px; }
+.pc main.wide { max-width: 1180px; }
+.pc h1 { font-size: 46px; }
+.pc h2 { font-size: 24px; }
+.pc .split { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: start; }
+.pc .split.s73 { grid-template-columns: 1.35fr 1fr; }
+.pc .split.s37 { grid-template-columns: 1fr 1.35fr; }
+.pc .split.center { align-items: center; }
+.pc .split > * + * { margin-top: 0; }
+.pc .sticky { position: sticky; top: 92px; }
+.pc .narrow { max-width: 760px; margin-left: auto; margin-right: auto; }
+.pc .grid2 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+
+/* PC 브라우저에서 모바일 화면을 고른 경우: 가운데 휴대폰 폭으로 */
+.force-mobile body { background: #e6e6ec; }
+.force-mobile .top, .force-mobile main, .force-mobile .foot { max-width: 430px; margin-left: auto; margin-right: auto; width: 100%; }
+.force-mobile main { background: var(--bg); box-shadow: 0 0 0 1px var(--line); }
+.force-mobile .top { background: var(--bg); }
+
 /* 허브 안에 들어갔을 때 */
 .embedded .foot { display: none; }
 .embedded main { padding-top: 14px; }
