@@ -106,3 +106,33 @@ function decodeData(str) {
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 const pick = arr => arr[Math.floor(Math.random() * arr.length)];
 function vibrate(p) { try { navigator.vibrate && navigator.vibrate(p); } catch (e) { /* 미지원 */ } }
+
+/* ---------- 화면 모드: PC / 모바일 ----------
+   기본은 화면 폭(900px 기준)으로 자동. 머리글 버튼으로 직접 고르면 그 선택을 기억함.
+   허브(km-crew.github.io) 안 iframe에서는 저장된 선택을 무시하고 틀의 폭으로만 정함. */
+const View = {
+  KEY: 'view-pref',
+  embedded: window.top !== window.self,
+  pref() { return this.embedded ? 'auto' : store.get(this.KEY, 'auto'); },
+  set(p) { store.set(this.KEY, p); this.apply(); toast(p === 'pc' ? 'PC 화면으로 볼게요' : p === 'mobile' ? '모바일 화면으로 볼게요' : '화면 폭에 맞춰 자동으로 볼게요'); },
+  apply() {
+    const pref = this.pref();
+    const meta = document.querySelector('meta[name=viewport]');
+    const phone = Math.min(screen.width, screen.height) < 700;
+    const want = pref === 'pc' && phone ? 'width=1280' : 'width=device-width, initial-scale=1, viewport-fit=cover';
+    if (meta && meta.content !== want) meta.content = want;
+    const pc = pref === 'pc' ? true : pref === 'mobile' ? false : innerWidth >= 900;
+    const root = document.documentElement;
+    root.classList.toggle('pc', pc);
+    root.classList.toggle('mobile', !pc);
+    root.classList.toggle('force-mobile', pref === 'mobile' && innerWidth >= 700);
+    const auto = document.getElementById('view-auto');
+    if (auto) auto.classList.toggle('hidden', pref === 'auto');
+  }
+};
+View.apply();
+addEventListener('resize', () => View.apply());
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-view]');
+  if (b) { e.preventDefault(); View.set(b.dataset.view); }
+});

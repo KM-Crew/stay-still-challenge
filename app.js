@@ -37,7 +37,9 @@ let lastResult = store.sget('ss-last', null);
 /* ---------- 랜딩 ---------- */
 Router.on('/', root => {
   const best = store.get('ss-records', []).reduce((m, r) => Math.max(m, r.sec), 0);
-  root.append(h(`
+  const wrap = h('<div class="split center"></div>');
+  root.append(wrap);
+  wrap.append(h(`
     <section class="hero">
       <div class="stone">🗿</div>
       <h1>한 자리에서<br>얼마나 버틸 수 있나요?</h1>
@@ -45,12 +47,14 @@ Router.on('/', root => {
       <a class="btn primary big block" href="#/ready">챌린지 시작</a>
       ${best ? `<p class="muted small">내 최고 기록 ${fmtKo(best)} · ${rankOf(best).name}</p>` : ''}
     </section>`));
-  root.append(h(`
+  const right = h('<div class="stack"></div>');
+  wrap.append(right);
+  right.append(h(`
     <section class="card">
       <b>칭호 단계</b>
       <div class="ranks">${RANKS.slice(1).map(r => `<div><span>${r.icon}</span><b>${r.name}</b><em>${fmtKo(r.t)}</em></div>`).join('')}</div>
     </section>`));
-  root.append(h(`<ol class="rules small muted"><li>화면을 켜 둔 채로 버텨요 (다른 앱으로 가면 일시정지)</li><li>반경 밖으로 나가면 실격</li><li>실내에서는 GPS가 흔들릴 수 있어요</li></ol>`));
+  right.append(h(`<ol class="rules small muted"><li>화면을 켜 둔 채로 버텨요 (다른 앱으로 가면 일시정지)</li><li>반경 밖으로 나가면 실격</li><li>실내에서는 GPS가 흔들릴 수 있어요</li></ol>`));
 });
 
 /* ---------- 준비 ---------- */
@@ -88,12 +92,14 @@ Router.on('/challenge', root => {
   root.append(h(`
     <section class="stack ch">
       <div class="rankline"><span id="ricon">·</span> <b id="rname">모래알</b></div>
+      <div class="split center"><div>
       <div class="timer" id="time">0:00</div>
       <div class="muted small center" id="nextr"></div>
+      </div><div>
       <div class="radar"><svg viewBox="-110 -110 220 220">
         <circle r="100" class="zone"/><circle r="70" class="warnline"/><circle r="4" class="anchor"/>
         <circle id="me" r="8" class="me"/></svg>
-        <div class="dist" id="dist">위치 잡는 중…</div></div>
+        <div class="dist" id="dist">위치 잡는 중…</div></div></div></div>
       <div class="warn hidden" id="warn">⚠️ 경계선 근처예요! 움직이지 마세요</div>
       ${demo ? '<div class="row"><button class="btn grow" id="wiggle">살짝 움직이기</button><button class="btn grow" id="walk">걸어 나가기</button></div>' : ''}
       <button class="btn ghost block" id="quit">포기하기</button>
