@@ -4,6 +4,7 @@
 
 - 2026-11-23: 저장소 생성, 페이지 구성 플랜(PLAN.md) 작성
 - 2026-11-23: 회의용 프로토타입 구현(정적 웹), GitHub Pages 배포, 허브(km-crew.github.io)에 연결
+- 2026-11-23: 업그레이드 S1 — OG 썸네일(og.png 1200×630)·og/twitter 메타·한 줄 소개, PNG 파비콘·apple-touch-icon, 좁은 화면 머리글 줄바꿈 수정(공용 core.css)
 
 ## 다음 할 일
 
