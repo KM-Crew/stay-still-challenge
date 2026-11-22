@@ -1,0 +1,31 @@
+:root { --accent: #4b5563; --accent-soft: #e5e7eb; --bg: #f2f1ec; }
+.hero { text-align: center; padding: 16px 0; }
+.stone { font-size: 84px; animation: still 6s ease-in-out infinite; }
+@keyframes still { 0%,92%,100% { transform: none; } 94% { transform: rotate(-3deg); } 96% { transform: rotate(3deg); } }
+.ranks { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 8px; margin-top: 10px; }
+.ranks div { display: grid; grid-template-columns: 26px 1fr; grid-template-rows: auto auto; column-gap: 6px; background: var(--bg); border-radius: 10px; padding: 8px 10px; font-size: 14px; }
+.ranks span { grid-row: span 2; font-size: 20px; align-self: center; }
+.ranks em { font-style: normal; color: var(--muted); font-size: 12px; }
+.rules { padding-left: 20px; margin-top: 16px; }
+.ch { text-align: center; }
+.rankline { font-size: 18px; }
+.timer { font-size: clamp(56px, 18vw, 92px); font-weight: 900; letter-spacing: -.04em; font-variant-numeric: tabular-nums; line-height: 1; }
+.radar { position: relative; max-width: 300px; margin: 8px auto 0; }
+.radar svg { width: 100%; display: block; }
+.zone { fill: #e8e6de; stroke: #b5b2a6; stroke-width: 2; }
+.warnline { fill: none; stroke: #f5a524; stroke-width: 1.5; stroke-dasharray: 5 5; }
+.anchor { fill: #4b5563; }
+.me { fill: #2f5cff; stroke: #fff; stroke-width: 3; transition: cx .5s ease, cy .5s ease; }
+.dist { font-size: 13px; color: var(--muted); margin-top: 4px; }
+.warn { background: #fff4dc; color: #8a5a00; border-radius: 12px; padding: 10px; font-weight: 700; animation: blink 1s ease-in-out infinite; }
+@keyframes blink { 50% { opacity: .55; } }
+.pause { position: fixed; inset: 0; background: rgba(20,20,20,.55); display: flex; align-items: center; justify-content: center; padding: 16px; z-index: 50; }
+.pause .card { max-width: 340px; width: 100%; }
+.resultcard { text-align: center; background: linear-gradient(170deg, #fff, #ecebe4); }
+.big-icon { font-size: 72px; }
+.rtime { font-size: 40px; font-weight: 900; letter-spacing: -.03em; }
+.rname { font-size: 22px; font-weight: 800; color: #6b5d3f; }
+.stamp { font-size: 12px; color: var(--muted); margin-top: 8px; }
+.hist { padding-left: 22px; margin: 0; }
+.hist li { display: grid; grid-template-columns: 1fr auto auto; gap: 10px; padding: 6px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
+.hist em { font-style: normal; color: var(--muted); }
