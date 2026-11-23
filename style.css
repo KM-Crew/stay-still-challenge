@@ -5,6 +5,9 @@
 .ranks { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 8px; margin-top: 10px; }
 .ranks div { display: grid; grid-template-columns: 26px 1fr; grid-template-rows: auto auto; column-gap: 6px; background: var(--bg); border-radius: 10px; padding: 8px 10px; font-size: 14px; }
 .ranks span { grid-row: span 2; font-size: 20px; align-self: center; }
+.ranks div { grid-template-columns: 34px 1fr; }
+.mini { display: block; width: 34px; }
+.mini svg { width: 100%; height: auto; display: block; }
 .ranks em { font-style: normal; color: var(--muted); font-size: 12px; }
 .rules { padding-left: 20px; margin-top: 16px; }
 .ch { text-align: center; }
@@ -30,10 +33,43 @@
 .hist li { display: grid; grid-template-columns: 1fr auto auto; gap: 10px; padding: 6px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
 .hist em { font-style: normal; color: var(--muted); }
 
+/* ---------- S12: 돌이 되어 가는 연출·경고·칭호 카드·도감 ---------- */
+.stone-demo { width: 150px; margin: 0 auto; }
+.stone-demo svg, .figwrap svg { width: 100%; height: auto; display: block; }
+.badges { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin: 4px 0 14px; }
+.badges span { background: var(--card); border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px; }
+.figwrap { width: 132px; margin: 0 auto 4px; transform-origin: 50% 100%; }
+.figwrap.shake { animation: shake .35s linear infinite; }
+@keyframes shake { 25% { transform: rotate(-2.5deg); } 75% { transform: rotate(2.5deg); } }
+.figwrap.rankup { animation: rankup .9s ease-out; }
+@keyframes rankup { 0% { transform: scale(1); filter: brightness(1); } 30% { transform: scale(1.12); filter: brightness(1.5) drop-shadow(0 0 12px #f4c542); } 100% { transform: scale(1); filter: none; } }
+.stonebar { height: 8px; background: var(--accent-soft); border-radius: 99px; overflow: hidden; max-width: 260px; margin: 10px auto 4px; }
+.stonebar i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #c9b79c, #6b6860); transition: width .4s; }
+.demotag { font-size: 12px; background: #fff4dc; color: #8a5a00; border-radius: 99px; padding: 2px 8px; vertical-align: middle; }
+.radar.draggable svg { cursor: grab; touch-action: none; }
+.outs { font-size: 13px; font-weight: 700; color: #b42318; min-height: 1.2em; }
+.warn.out { background: #fde2e1; color: #b42318; animation-duration: .45s; }
+.demo-ctl .btn { min-width: 130px; }
+.row.wrap { flex-wrap: wrap; }
+.opts .btn.small { align-self: flex-start; }
+.cardbox { text-align: center; }
+.titlecard { width: 100%; max-width: 420px; height: auto; border-radius: 14px; box-shadow: 0 10px 30px rgba(0,0,0,.14); }
+.dex { display: grid; grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); gap: 8px; margin-top: 10px; }
+.dex div { background: var(--bg); border-radius: 12px; padding: 8px; text-align: center; font-size: 13px; display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.dex .mini { width: 52px; }
+.dex em { font-style: normal; color: var(--muted); font-size: 11px; }
+.dex .lock .mini { filter: grayscale(1) brightness(.4); opacity: .35; }
+.reduce-motion .figwrap, .reduce-motion .warn { animation: none !important; }
+
 /* ---------- PC 화면 ---------- */
 .pc .hero { text-align: left; }
-.pc .stone { font-size: 110px; }
-.pc body[data-page=ready] main, .pc body[data-page=result] main, .pc body[data-page=records] main { max-width: 720px; }
+.pc .stone-demo { width: 190px; margin: 0; }
+.pc .badges { justify-content: flex-start; }
+.pc .figwrap { width: 170px; }
+.pc body[data-page=ready] main, .pc body[data-page=records] main { max-width: 720px; }
+.pc body[data-page=result] main { max-width: 900px; }
 .pc .timer { font-size: 120px; }
 .pc .radar { max-width: 380px; }
 .pc .ch { max-width: 980px; margin: 0 auto; }
+.rtitle { font-size: clamp(24px, 6vw, 34px); }
+.ranks div, .rules { text-align: left; }
